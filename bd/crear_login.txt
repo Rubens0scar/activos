@@ -1,0 +1,16 @@
+USE master;
+GO
+-- Crea el inicio de sesión de SQL Server
+CREATE LOGIN [soporte] WITH PASSWORD = N'@ctivoS2024' MUST_CHANGE
+, DEFAULT_DATABASE=[activos_csa]
+, CHECK_EXPIRATION=OFF
+, CHECK_POLICY=ON
+/**************************************************/
+USE [activos_csa]
+GO
+-- Crea el usuario de base de datos
+CREATE USER [soporte] FOR LOGIN [soporte]
+GO
+-- Haz que el nuevo usuario sea el propietario de la base de datos
+ALTER ROLE db_owner ADD MEMBER [soporte]
+GO
